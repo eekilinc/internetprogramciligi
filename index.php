@@ -31,7 +31,7 @@
                     <h3 class="text-dark mb-0">Anasayfa</h3>
                 </div>
                 <div class="row">
-                    Anasayfa
+                    Burası anasasayfadır burada ana içerikller oluşturlacak
                 </div>
 
             </div>
