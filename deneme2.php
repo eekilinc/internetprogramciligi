@@ -26,12 +26,17 @@
     <div class="d-flex flex-column" id="content-wrapper">
         <?php include("templates/topnavbar.php") ?>
         <div id="content">
-             <div class="container-fluid">
+            <div class="container-fluid">
                 <div class="d-sm-flex justify-content-between align-items-center mb-4">
                     <h3 class="text-dark mb-0">Anasayfa</h3>
                 </div>
                 <div class="row">
-                  // html formlardan bahsedeceğiz
+                    <?php
+
+                    if (isset($_GET['ad']) && isset($_GET['soyad']))
+                        echo $_GET['ad'], $_GET['soyad'];
+
+                    ?>
 
 
                 </div>

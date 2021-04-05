@@ -1,20 +1,3 @@
-<?php
-// backend kontrol paneli
-// arayüz tasarımı
-// veri tabanı tasarımı
-// veritabanı bağlantısı
-// kullanıcı girişimiz
-// veritabanı işlemlerimiz
-
-// bootstrap
-
-
-// php veritabanı javascript html css
-
-// frontend html css javascript
-
-?>
-
 <!DOCTYPE html>
 <html lang="tr">
 <head>
@@ -26,12 +9,16 @@
     <div class="d-flex flex-column" id="content-wrapper">
         <?php include("templates/topnavbar.php") ?>
         <div id="content">
-             <div class="container-fluid">
+            <div class="container-fluid">
                 <div class="d-sm-flex justify-content-between align-items-center mb-4">
-                    <h3 class="text-dark mb-0">Anasayfa</h3>
+                    <h3 class="text-dark mb-0">Formlar</h3>
                 </div>
                 <div class="row">
-                  // html formlardan bahsedeceğiz
+                    <form action="deneme2.php" method="get">
+                        <input type="text" name="ad">
+                        <input type="text" name="soyad">
+                        <input type="submit" value="Gönder">
+                    </form>
 
 
                 </div>
@@ -45,3 +32,4 @@
 <?php include("templates/footerscript.php") ?>
 </body>
 </html>
+
