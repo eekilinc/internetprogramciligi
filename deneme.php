@@ -14,14 +14,17 @@
                     <h3 class="text-dark mb-0">Formlar</h3>
                 </div>
                 <div class="row">
-                    <form action="deneme2.php" method="get">
-                        <input type="text" name="ad">
-                        <input type="text" name="soyad">
+                    <form action="deneme2.php" method="post">
+                        <input type="text" name="satir"><br>
+                        <input type="text" name="sutun"><br>
+                        <input type="checkbox" name="kenar"> Kenarlık<br>
                         <input type="submit" value="Gönder">
                     </form>
 
-
                 </div>
+
+                session
+
 
             </div>
         </div>

@@ -1,20 +1,8 @@
 <?php
-// backend kontrol paneli
-// arayüz tasarımı
-// veri tabanı tasarımı
-// veritabanı bağlantısı
-// kullanıcı girişimiz
-// veritabanı işlemlerimiz
-
-// bootstrap
-
-
-// php veritabanı javascript html css
-
-// frontend html css javascript
-
+session_start();
+if (empty($_SESSION['oturum']))
+  header("Location:giris.php");
 ?>
-
 <!DOCTYPE html>
 <html lang="tr">
 <head>

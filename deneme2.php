@@ -32,9 +32,22 @@
                 </div>
                 <div class="row">
                     <?php
-
-                    if (isset($_GET['ad']) && isset($_GET['soyad']))
-                        echo $_GET['ad'], $_GET['soyad'];
+                    $durum = 0;
+                    if (isset($_POST['kenar']))
+                        $durum = 1;
+                    if (isset($_POST['satir']) && isset($_POST['sutun'])) {
+                        if ($durum == 1)
+                            echo '<table border="1">';
+                        else
+                            echo '<table>';
+                        for ($i = 0; $i < $_POST['satir']; $i++) {
+                            echo '<tr>';
+                            for ($j = 0; $j < $_POST['sutun']; $j++)
+                                echo '<td>' . ($i + 1) . '-' . ($j + 1) . '</td>';
+                            echo '</tr>';
+                        }
+                        echo '</table>';
+                    }
 
                     ?>
 
