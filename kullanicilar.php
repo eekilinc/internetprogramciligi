@@ -1,11 +1,13 @@
-
+<?php
+require("templates/oturumkontrol.php");
+?>
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-   <!-- include
-    include_once
-    require
-    require_once-->
+    <!-- include
+     include_once
+     require
+     require_once-->
 
     <?php include("templates/header.php") ?>
 </head>
@@ -21,7 +23,7 @@
                     <h3 class="text-dark mb-0">Kulanıcılar</h3>
                 </div>
                 <div class="row">
-                   Kullanıcılar
+                    Kullanıcılar
                 </div>
 
             </div>

@@ -1,3 +1,6 @@
+<?php
+require ("templates/oturumkontrol.php");
+?>
 <!DOCTYPE html>
 <html lang="tr">
 <head>

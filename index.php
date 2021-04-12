@@ -1,7 +1,5 @@
 <?php
-session_start();
-if (empty($_SESSION['oturum']))
-  header("Location:giris.php");
+require ("templates/oturumkontrol.php");
 ?>
 <!DOCTYPE html>
 <html lang="tr">

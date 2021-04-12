@@ -1,3 +1,8 @@
+<?php
+session_start();
+if (isset($_SESSION['oturum']))
+    header("Location:index.php");
+?>
 <!DOCTYPE html>
 <html lang="tr">
 <head>
@@ -6,7 +11,8 @@
     <title>Giriş Paneli - AglasunBilisimBlog</title>
     <meta name="description" content="Ağlasun Bilişim Blog Sitesi">
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
     <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
     <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
     <link rel="stylesheet" href="assets/fonts/fontawesome5-overrides.min.css">
@@ -20,7 +26,8 @@
                 <div class="card-body p-0">
                     <div class="row">
                         <div class="col-lg-6 d-none d-lg-flex">
-                            <div class="flex-grow-1 bg-login-image" style="background-image: url(&quot;assets/img/dogs/image3.jpeg&quot;);"></div>
+                            <div class="flex-grow-1 bg-login-image"
+                                 style="background-image: url(&quot;assets/img/dogs/image3.jpeg&quot;);"></div>
                         </div>
                         <div class="col-lg-6">
                             <div class="p-5">
@@ -28,17 +35,39 @@
                                     <h4 class="text-dark mb-4">Kullanıcı Giriş Paneli</h4>
                                 </div>
                                 <form class="user" method="post" action="kontrol.php">
-                                    <div class="form-group"><input class="form-control form-control-user" type="email" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="E-Posta Adresi Giriniz" name="eposta"></div>
-                                    <div class="form-group"><input class="form-control form-control-user" type="password" id="exampleInputPassword" placeholder="Parolanızı Girin" name="parola"></div>
+                                    <div class="form-group"><input class="form-control form-control-user" type="email"
+                                                                   id="exampleInputEmail" aria-describedby="emailHelp"
+                                                                   placeholder="E-Posta Adresi Giriniz" name="eposta">
+                                    </div>
+                                    <div class="form-group"><input class="form-control form-control-user"
+                                                                   type="password" id="exampleInputPassword"
+                                                                   placeholder="Parolanızı Girin" name="parola"></div>
                                     <div class="form-group">
                                         <div class="custom-control custom-checkbox small">
-                                            <div class="form-check"><input class="form-check-input custom-control-input" type="checkbox" id="formCheck-1"><label class="form-check-label custom-control-label" for="formCheck-1">Remember Me</label></div>
+                                            <div class="form-check"><input class="form-check-input custom-control-input"
+                                                                           type="checkbox" id="formCheck-1"><label
+                                                        class="form-check-label custom-control-label" for="formCheck-1">Beni Hatırla</label></div>
                                         </div>
-                                    </div><button class="btn btn-primary btn-block text-white btn-user" type="submit">Giriş</button>
-                                   <hr>
+                                    </div>
+                                    <button class="btn btn-primary btn-block text-white btn-user" type="submit">Giriş
+                                    </button>
+                                    <hr>
                                 </form>
-                                <div class="text-center"><a class="small" href="forgot-password.html">Parolamı Unttum?</a></div>
+                                <div class="text-center"><a class="small" href="forgot-password.html">Parolamı
+                                        Unttum?</a></div>
                                 <div class="text-center"><a class="small" href="register.html">Kayıt Ol!!!</a></div>
+                                <?php
+                                if (isset($_SESSION['hata'])) {
+                                    ?>
+                                    <hr>
+                                    <div class="alert-danger" style="padding: 5px;">
+                                        <?php echo $_SESSION['hata'];
+                                        unset($_SESSION['hata']);
+                                        ?>
+                                    </div>
+                                    <?php
+                                }
+                                ?>
                             </div>
                         </div>
                     </div>
