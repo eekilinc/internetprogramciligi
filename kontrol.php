@@ -6,7 +6,7 @@ if (isset($_POST['eposta']) && isset($_POST['parola'])) {
 
     if ($eposta == 'a@mail.com' && $parola == '12345') {
         $_SESSION["oturum"] = "Ekrem Eşref KILINÇ";
-        $url = $_SESSION['url'];
+        $url = isset($_SESSION['url']) ? $_SESSION['url'] : 'index.php';
         unset($_SESSION['url']);
         header("Location:" . $url);
     } else {
