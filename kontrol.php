@@ -3,9 +3,14 @@ session_start();
 if (isset($_POST['eposta']) && isset($_POST['parola'])) {
     $eposta = $_POST['eposta'];
     $parola = $_POST['parola'];
+    $benihatirla = isset($_POST['benihatirla']) ? true : false;
 
     if ($eposta == 'a@mail.com' && $parola == '12345') {
         $_SESSION["oturum"] = "Ekrem Eşref KILINÇ";
+        $sifreli=urlencode(base64_encode($_SESSION["oturum"]));
+        if ($benihatirla)
+            setcookie('oturum', $sifreli, time() + 60 * 60 * 24);
+
         $url = isset($_SESSION['url']) ? $_SESSION['url'] : 'index.php';
         unset($_SESSION['url']);
         header("Location:" . $url);
@@ -22,5 +27,6 @@ if (isset($_POST['eposta']) && isset($_POST['parola'])) {
 if (isset($_GET['cikis'])) {
     unset($_SESSION["oturum"]);
     //session_destroy();
+    setcookie('oturum', '', time() - 3600);
     header("Location:giris.php");
 }

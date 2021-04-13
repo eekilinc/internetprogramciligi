@@ -25,6 +25,16 @@ require("templates/oturumkontrol.php");
                 <div class="row">
                     Kullanıcılar
                 </div>
+                <?php /*
+                if (isset($_COOKIE['deneme']))
+                    echo "cookie var" ." - ". $_COOKIE['deneme'];
+                else {
+                    setcookie("deneme", "aglasun", time() + 60 * 60 * 24);
+                    echo "Oluşturulam zamanı:" . time();
+                }
+                //  setcookie('deneme','',time()-60);*/
+                ?>
+
 
             </div>
         </div>

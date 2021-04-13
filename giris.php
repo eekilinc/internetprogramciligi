@@ -45,8 +45,10 @@ if (isset($_SESSION['oturum']))
                                     <div class="form-group">
                                         <div class="custom-control custom-checkbox small">
                                             <div class="form-check"><input class="form-check-input custom-control-input"
-                                                                           type="checkbox" id="formCheck-1"><label
-                                                        class="form-check-label custom-control-label" for="formCheck-1">Beni Hatırla</label></div>
+                                                                           type="checkbox" id="formCheck-1"
+                                                                           name="benihatirla"><label
+                                                        class="form-check-label custom-control-label" for="formCheck-1">Beni
+                                                    Hatırla</label></div>
                                         </div>
                                     </div>
                                     <button class="btn btn-primary btn-block text-white btn-user" type="submit">Giriş
