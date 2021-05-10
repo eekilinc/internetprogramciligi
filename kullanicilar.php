@@ -1,13 +1,14 @@
 <?php
 require("templates/oturumkontrol.php");
+require("templates/vt.php");
+
+$sorgu = $vt->query("select * from kullanici");
+$kullanicilar = $sorgu->fetchAll(PDO::FETCH_ASSOC);
+$kayitsayisi = $sorgu->rowCount();
 ?>
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <!-- include
-     include_once
-     require
-     require_once-->
 
     <?php include("templates/header.php") ?>
 </head>
@@ -23,19 +24,46 @@ require("templates/oturumkontrol.php");
                     <h3 class="text-dark mb-0">Kulanıcılar</h3>
                 </div>
                 <div class="row">
-                    Kullanıcılar
+                    <?php if ($kayitsayisi > 0) {
+                    ?>
+                    <table class="table border">
+                        <thead>
+                        <tr>
+                            <th>İd</th>
+                            <th>Ad</th>
+                            <th>Soyad</th>
+                            <th>E-Posta</th>
+                            <th>Aktif Mi</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php foreach ($kullanicilar as $satir) { ?>
+                            <tr>
+                                <td><?php echo $satir['id'] ?></td>
+                                <td><?php echo $satir['Ad'] ?></td>
+                                <td><?php echo $satir['Soyad'] ?></td>
+                                <td><?php echo $satir['Eposta'] ?></td>
+                                <td><?php echo $satir['Aktif'] == 0 ? 'Aktif Değil' : 'Aktif'; ?></td>
+                            </tr>
+                        <?php } ?>
+
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <th>İd</th>
+                            <th>Ad</th>
+                            <th>Soyad</th>
+                            <th>E-Posta</th>
+                            <th>Aktif Mi</th>
+                        </tr>
+                        </tfoot>
+                    </table>
                 </div>
-                <?php /*
-                if (isset($_COOKIE['deneme']))
-                    echo "cookie var" ." - ". $_COOKIE['deneme'];
-                else {
-                    setcookie("deneme", "aglasun", time() + 60 * 60 * 24);
-                    echo "Oluşturulam zamanı:" . time();
+                <?php
                 }
-                //  setcookie('deneme','',time()-60);*/
+                else
+                    echo "Gösterilecek kayıt bulunamadı";
                 ?>
-
-
             </div>
         </div>
         <?php include("templates/footer.php") ?>

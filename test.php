@@ -9,26 +9,53 @@ try {
     echo $ex->getMessage();
 }
 
-$sorgu = $vt->query('select * from kullanici');
-
-$sonuc = $sorgu->fetchAll(PDO::FETCH_ASSOC);
-/*foreach ($sonuc as $satir) {
-    echo $satir["id"] . $satir["Ad"] . $satir["Soyad"] . "<br>";
-}*/
-
-/*$satirsayisi = $sorgu->rowCount();
-for ($i = 0; $i < $satirsayisi; $i++)
-    echo $sonuc[$i]["id"] . $sonuc[$i]["Ad"] . $sonuc[$i]["Soyad"] . "<br>";
+$ad = "ekrem";
+$soyad = "kilinc";
+$kad = "ekrem";
+$parola = "123";
+// 1 .yöntem
+/*$sonuc = $vt->exec("Insert Into Kullanici(Ad,Soyad,Kad,Parola) Values('{$ad}','{$soyad}','{$kad}','{$parola}')");
+if ($sonuc > 0)
+    echo "Kaydetme işlemi Başarılı";
 */
-if ($sorgu->rowCount() > 0) {
-    echo '<table border="1">';
-    foreach ($sonuc as $item) {
-        echo "<tr>";
-        foreach ($item as $veri)
-            echo "<td>" . $veri . "</td>";
-        echo "</tr>";
-    }
-    echo "</table>";
-}
-$vt = null;
 
+//2.yöntem
+/*$sonuc = $vt->prepare("Insert Into Kullanici(Ad,Soyad,Kad,Parola) Values(?,?,?,?)");
+// isimsiz parametre
+$sonuc->bindParam(1, $ad);
+$sonuc->bindParam(2, $soyad);
+$sonuc->bindParam(3, $kad);
+$sonuc->bindParam(4, $parola);
+$donen=$sonuc->execute();
+if ($donen>0)
+    echo "Kayıt ekleme işlemi başarılı";*/
+
+/*
+$sonuc = $vt->prepare("Insert Into Kullanici(Ad,Soyad,Kad,Parola) Values(:ad,:soyad,:kad,:parola)");
+// isimli parametre
+$sonuc->bindParam(':ad', $ad);
+$sonuc->bindParam(':soyad', $soyad);
+$sonuc->bindParam(':kad', $kad);
+$sonuc->bindParam(':parola', $parola);
+$donen = $sonuc->execute();
+if ($donen > 0)
+    echo "Kayıt ekleme işlemi başarılı";*/
+
+
+$vt->beginTransaction();
+/*
+try {
+    $data = array('ad' => "ekrem", 'soyad' => "kilinc", 'kad' => "ekrem", 'parola' => 'asd');
+    $sonuc = $vt->prepare("Insert Into Kullanici(Ad,Soyad,Kad,Parola) Values(:ad,:soyad,:kad,:parola)");
+// dizi ile parametre
+    $donen = $sonuc->execute($data);
+    if ($donen > 0)
+        echo "Kayıt ekleme işlemi başarılı";
+    $vt->commit();
+} catch (Exception $exception) {
+    $vt->rollBack();
+}
+
+
+$vt = null;
+*/
