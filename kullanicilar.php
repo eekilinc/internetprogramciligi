@@ -2,14 +2,13 @@
 require("templates/oturumkontrol.php");
 require("templates/vt.php");
 
-$sorgu = $vt->query("select * from kullanici");
+$sorgu = $vt->query("select * from kullanici order by id desc");
 $kullanicilar = $sorgu->fetchAll(PDO::FETCH_ASSOC);
 $kayitsayisi = $sorgu->rowCount();
 ?>
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-
     <?php include("templates/header.php") ?>
 </head>
 <body id="page-top">
@@ -22,18 +21,32 @@ $kayitsayisi = $sorgu->rowCount();
             <div class="container-fluid">
                 <div class="d-sm-flex justify-content-between align-items-center mb-4">
                     <h3 class="text-dark mb-0">Kulanıcılar</h3>
+                    <a href="kullanici.php?islem=ekle">Yeni Kullanıcı Ekle</a>
                 </div>
-                <div class="row">
+
+                <?php
+                if (isset($_SESSION['durum'])) {
+                    if ($_SESSION['durum'] == 1)
+                        echo "Kayıt Silme Başarılı";
+                    else
+                        echo "Maalesef Kayıt silinemedi";
+                    unset($_SESSION['durum']);
+                }
+
+                ?>
+                <div class="table-responsive table mt-2" id="dataTable" role="grid"
+                     aria-describedby="dataTable_info">
                     <?php if ($kayitsayisi > 0) {
                     ?>
-                    <table class="table border">
-                        <thead>
+                    <table class="table table-bordered table-striped table-hover" id="kullaniciTablo">
+                        <thead class="thead-dark">
                         <tr>
-                            <th>İd</th>
-                            <th>Ad</th>
-                            <th>Soyad</th>
-                            <th>E-Posta</th>
-                            <th>Aktif Mi</th>
+                            <th scope="col">İd</th>
+                            <th scope="col">Ad</th>
+                            <th scope="col">Soyad</th>
+                            <th scope="col">E-Posta</th>
+                            <th scope="col" class="text-center">Aktif Mi</th>
+                            <th class="text-center">İşlemler</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -43,27 +56,37 @@ $kayitsayisi = $sorgu->rowCount();
                                 <td><?php echo $satir['Ad'] ?></td>
                                 <td><?php echo $satir['Soyad'] ?></td>
                                 <td><?php echo $satir['Eposta'] ?></td>
-                                <td><?php echo $satir['Aktif'] == 0 ? 'Aktif Değil' : 'Aktif'; ?></td>
+                                <td class="text-center"><span
+                                            class=" <?php echo $satir['Aktif'] == 0 ? 'fa fa-times-circle' : 'fa fa-check-circle'; ?>"></span>
+                                </td>
+                                <td class="text-center">
+                                    <a href="kullanici.php?islem=duzenle&id=<?php echo $satir['id'] ?>">
+                                        <span class="fa fa-edit"></span></a> |
+                                    <a href="kullanici.php?islem=sil&id=<?php echo $satir['id'] ?>">
+                                        <span class="fa fa-remove"></span></a>
+                                </td>
                             </tr>
                         <?php } ?>
 
                         </tbody>
-                        <tfoot>
+                        <tfoot class="thead-dark">
                         <tr>
                             <th>İd</th>
                             <th>Ad</th>
                             <th>Soyad</th>
                             <th>E-Posta</th>
-                            <th>Aktif Mi</th>
+                            <th class="text-center">Aktif Mi</th>
+                            <th class="text-center">İşlemler</th>
                         </tr>
                         </tfoot>
                     </table>
                 </div>
-                <?php
-                }
-                else
-                    echo "Gösterilecek kayıt bulunamadı";
-                ?>
+            <?php
+            }
+            else
+                echo "Gösterilecek kayıt bulunamadı";
+            ?>
+
             </div>
         </div>
         <?php include("templates/footer.php") ?>
