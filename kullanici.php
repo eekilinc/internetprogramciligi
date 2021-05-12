@@ -66,39 +66,36 @@ if (isset($_GET['islem'])) {
         <?php include("templates/topnavbar.php") ?>
         <div id="content">
             <div class="container-fluid">
-                <div class="d-sm-flex justify-content-between align-items-center mb-4">
-                    <h3 class="text-dark mb-0">Kullanıcı</h3>
-                </div>
                 <div class="row">
                     <?php if ($durum == 1) { ?>
 
                         <div class="col">
                             <div class="card shadow mb-3">
                                 <div class="card-header py-3">
-                                    <p class="text-primary m-0 font-weight-bold">Kullanıcı Bilgileri</p>
+                                    <h5 class="text-primary m-0 font-weight-bold">Kullanıcı Bilgileri</h5>
                                 </div>
                                 <div class="card-body">
                                     <form method="post"
                                           action="kullanici.php?islem=duzenle&id=<?php echo $sonuc["id"]; ?> ">
                                         <div class="form-row">
                                             <div class="form-group"><label
-                                                        for="aktif"><strong>Aktifmi</strong></label><input
+                                                        for="aktif"><strong>Aktif Mi :</strong></label><input
                                                         class="form-control" type="checkbox" id="aktif"
                                                         name="aktif"
                                                     <?php echo $sonuc["Aktif"] == 1 ? "checked" : ""; ?> ></div>
                                         </div>
                                         <div class=" form-row">
-                                            <div class="form-group"><label for="email"><strong>Eposta
-                                                        Address</strong></label><input class="form-control"
-                                                                                       type="email" id="email"
-                                                                                       placeholder="user@example.com"
-                                                                                       name="email"
-                                                                                       value="<?php echo $sonuc["Eposta"]; ?>"
-                                                                                       disabled>
+                                            <div class="form-group"><label for="email"><strong>E- posta :
+                                                    </strong></label><input class="form-control"
+                                                                            type="email" id="email"
+                                                                            placeholder="user@example.com"
+                                                                            name="email"
+                                                                            value="<?php echo $sonuc["Eposta"]; ?>"
+                                                                            disabled>
                                             </div>
                                         </div>
                                         <div class="form-row">
-                                            <div class="form-group"><label for="ad"><strong>AD
+                                            <div class="form-group"><label for="ad"><strong>Ad :
                                                     </strong></label><input class="form-control" type="text"
                                                                             id="ad"
                                                                             placeholder="John"
@@ -108,14 +105,16 @@ if (isset($_GET['islem'])) {
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group"><label
-                                                        for="soyad"><strong>Soyad</strong></label><input
+                                                        for="soyad"><strong>Soyad :</strong></label><input
                                                         class="form-control" type="text"
                                                         id="soyad" placeholder="Doe"
                                                         name="soyad" value="<?php echo $sonuc["Soyad"]; ?>">
                                             </div>
                                         </div>
-                                        <div class="form-group">
-                                            <button class="btn btn-primary btn-sm" type="submit">Kaydet</button>
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <button class="btn btn-primary btn-sm" type="submit">Kaydet</button>
+                                            </div>
                                         </div>
                                     </form>
                                 </div>
@@ -125,29 +124,21 @@ if (isset($_GET['islem'])) {
                         <div class="col">
                             <div class="card shadow mb-3">
                                 <div class="card-header py-3">
-                                    <p class="text-primary m-0 font-weight-bold">Kullanıcı Bilgileri</p>
+                                    <h5 class="text-primary m-0 font-weight-bold">Kullanıcı Ekle</h5>
                                 </div>
                                 <div class="card-body">
                                     <form method="post"
                                           action="kullanici.php?islem=ekle">
-                                        <div class="form-row">
-                                            <div class="form-group"><label
-                                                        for="aktif"><strong>Aktifmi</strong></label><input
-                                                        class="form-control" type="checkbox" id="aktif"
-                                                        name="aktif"
-                                                >
-                                            </div>
-                                        </div>
                                         <div class=" form-row">
-                                            <div class="form-group"><label for="email"><strong>Eposta
-                                                        Address</strong></label><input class="form-control"
-                                                                                       type="email" id="email"
-                                                                                       placeholder="a@mail.com"
-                                                                                       name="email">
+                                            <div class="form-group"><label for="email"><strong>E-posta :
+                                                    </strong></label><input class="form-control"
+                                                                            type="email" id="email"
+                                                                            placeholder="a@mail.com"
+                                                                            name="email">
                                             </div>
                                         </div>
                                         <div class="form-row">
-                                            <div class="form-group"><label for="ad"><strong>AD
+                                            <div class="form-group"><label for="ad"><strong>Ad :
                                                     </strong></label><input class="form-control" type="text"
                                                                             id="ad"
                                                                             placeholder="Ad"
@@ -156,14 +147,25 @@ if (isset($_GET['islem'])) {
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group"><label
-                                                        for="soyad"><strong>Soyad</strong></label><input
+                                                        for="soyad"><strong>Soyad :</strong></label><input
                                                         class="form-control" type="text"
                                                         id="soyad" placeholder="Soyad"
                                                         name="soyad">
                                             </div>
                                         </div>
-                                        <div class="form-group">
-                                            <button class="btn btn-primary btn-sm" type="submit">Kullanıcı Ekle</button>
+                                        <div class="form-row">
+                                            <div class="form-group"><label
+                                                        for="aktif"><strong>Aktif Mi :</strong></label><input
+                                                        class="form-control" type="checkbox" id="aktif"
+                                                        name="aktif"
+                                                >
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <button class="btn btn-primary btn-sm" type="submit">Kaydet
+                                                </button>
+                                            </div>
                                         </div>
                                     </form>
                                 </div>
@@ -174,16 +176,9 @@ if (isset($_GET['islem'])) {
                 </div>
             </div>
         </div>
-
-
+        <?php include("templates/footer.php") ?>
     </div>
-</div>
-
-</div>
-</div>
-<?php include("templates/footer.php") ?>
-</div>
-<a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
+    <a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
 </div>
 <?php include("templates/footerscript.php") ?>
 </body>
