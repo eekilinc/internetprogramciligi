@@ -23,16 +23,13 @@ $kayitsayisi = $sorgu->rowCount();
 
                 <?php
                 if (isset($_SESSION['durum'])) {
-                    if ($_SESSION['durum'] == 1)
-                        echo "Kayıt Silme Başarılı";
-                    else
-                        echo "Maalesef Kayıt silinemedi";
+                    echo $_SESSION['durum'];
                     unset($_SESSION['durum']);
                 }
 
                 ?>
 
-                <div class="container-fluid">
+                <div class="container-fluid col-11 col-lg-11 col-sm-auto">
                     <div class="card shadow">
                         <div class="card-header py-3">
                             <h5 class="text-primary m-0 font-weight-bold">Kullanıcılar</h5>
@@ -62,13 +59,13 @@ $kayitsayisi = $sorgu->rowCount();
                                                 <td><?php echo $satir['Soyad'] ?></td>
                                                 <td><?php echo $satir['Eposta'] ?></td>
                                                 <td class="text-center"><span
-                                                            class=" <?php echo $satir['Aktif'] == 0 ? 'fa fa-times-circle' : 'fa fa-check-circle'; ?>"></span>
+                                                            class="fa-2x <?php echo $satir['Aktif'] == 0 ? 'fa fa-minus-square' : 'fa fa-check-square'; ?>"></span>
                                                 </td>
                                                 <td class="text-center">
                                                     <a href="kullanici.php?islem=duzenle&id=<?php echo $satir['id'] ?>">
-                                                        <span class="fa fa-edit"></span></a> |
+                                                        <span class="fa fa-pen-square fa-2x"></span></a>
                                                     <a href="kullanici.php?islem=sil&id=<?php echo $satir['id'] ?>">
-                                                        <span class="fa fa-remove"></span></a>
+                                                        <span class="fa fa-trash-o fa-2x"></span></a>
                                                 </td>
                                             </tr>
                                         <?php } ?>

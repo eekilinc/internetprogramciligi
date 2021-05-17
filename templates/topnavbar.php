@@ -128,7 +128,9 @@
                                                            href="#"><span
                                 class="d-none d-lg-inline mr-2 text-gray-600 small">
                             <?php
-                            echo $_SESSION['oturum'];
+                            $kayit = $vt->query("Select * from Kullanici where id='" . $_SESSION['oturum'] . "'")->fetch(PDO::FETCH_ASSOC);
+                            echo $kayit['Ad'] . ' ' . $kayit['Soyad'];
+
                             ?>
                         </span><img
                                 class="border rounded-circle img-profile"
@@ -143,7 +145,7 @@
                             log</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="kontrol.php?cikis"><i
-                                    class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;  Çıkış</a>
+                                    class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp; Çıkış</a>
                     </div>
                 </div>
             </li>

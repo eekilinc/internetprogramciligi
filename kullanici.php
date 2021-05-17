@@ -14,6 +14,30 @@ if (isset($_POST["ad"])) {
     $guncelle->bindParam(":soyad", $soyad);
     $guncelle->bindParam(":aktif", $aktif);
     $guncelle->execute();
+}
+
+if (isset($_POST["adek"])) {
+    $eposta = $_POST['emailek'];
+    $kontrol = $vt->query("select * from Kullanici where Eposta='" . $eposta . "'");
+    if ($kontrol->rowCount() > 0) {
+        $_SESSION["durum"] = "Bu eposta adresi kullanılıyor, Lütfen farklı bir eposta adresi kullanın";
+
+    } else {
+        $ad = $_POST["adek"];
+        $soyad = $_POST['soyadek'];
+        $parola = $_POST['parolaek'];
+        $parola = password_hash($parola, PASSWORD_DEFAULT);
+        $aktif = isset($_POST["aktifek"]) ? 1 : 0;
+        $ekle = $vt->prepare("insert into Kullanici(Ad,Soyad,Eposta,Parola,Aktif) values(:ad,:soyad,:eposta,:parola,:aktif)");
+        $ekle->bindParam(":ad", $ad);
+        $ekle->bindParam(":soyad", $soyad);
+        $ekle->bindParam(":eposta", $eposta);
+        $ekle->bindParam(":parola", $parola);
+        $ekle->bindParam(":aktif", $aktif);
+        $ekle->execute();
+        $_SESSION["durum"] = "Yeni bir kullanıcı eklendi";
+        header("Location:kullanicilar.php");
+    }
 
 
 }
@@ -28,8 +52,8 @@ if (isset($_GET['islem'])) {
                 $id = $_GET["id"];
                 $donen = $sorgu->execute();
                 if ($donen != 0)
-                    $_SESSION["durum"] = 1;
-                else $_SESSION["durum"] = 0;
+                    $_SESSION["durum"] = "Kayıt Başarılı Bir şekilde Silindi";
+                else $_SESSION["durum"] = "Kayıt Silenemedi.";
             } catch (Exception $ex) {
                 $_SESSION["durum"] = 0;
             }
@@ -65,7 +89,27 @@ if (isset($_GET['islem'])) {
     <div class="d-flex flex-column" id="content-wrapper">
         <?php include("templates/topnavbar.php") ?>
         <div id="content">
+
+
             <div class="container-fluid">
+                <?php
+                if (isset($_SESSION['durum'])) {
+                    ?>
+                    <div class="row text-center">
+                        <div class="col">
+                            <div class="badge badge-danger">
+                                <?php
+                                echo $_SESSION['durum'];
+                                unset($_SESSION['durum']);
+                                ?>
+                            </div>
+                        </div>
+                    </div>
+                    <?php
+                }
+                ?>
+
+
                 <div class="row">
                     <?php if ($durum == 1) { ?>
 
@@ -134,7 +178,7 @@ if (isset($_GET['islem'])) {
                                                     </strong></label><input class="form-control"
                                                                             type="email" id="email"
                                                                             placeholder="a@mail.com"
-                                                                            name="email">
+                                                                            name="emailek">
                                             </div>
                                         </div>
                                         <div class="form-row">
@@ -142,7 +186,7 @@ if (isset($_GET['islem'])) {
                                                     </strong></label><input class="form-control" type="text"
                                                                             id="ad"
                                                                             placeholder="Ad"
-                                                                            name="ad">
+                                                                            name="adek">
                                             </div>
                                         </div>
                                         <div class="form-row">
@@ -150,14 +194,22 @@ if (isset($_GET['islem'])) {
                                                         for="soyad"><strong>Soyad :</strong></label><input
                                                         class="form-control" type="text"
                                                         id="soyad" placeholder="Soyad"
-                                                        name="soyad">
+                                                        name="soyadek">
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group"><label
+                                                        for="parola"><strong>Parola :</strong></label><input
+                                                        class="form-control" type="password"
+                                                        id="parola" placeholder="Parola"
+                                                        name="parolaek">
                                             </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group"><label
                                                         for="aktif"><strong>Aktif Mi :</strong></label><input
                                                         class="form-control" type="checkbox" id="aktif"
-                                                        name="aktif"
+                                                        name="aktifek"
                                                 >
                                             </div>
                                         </div>
