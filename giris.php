@@ -27,7 +27,7 @@ if (isset($_SESSION['oturum']))
                     <div class="row">
                         <div class="col-lg-6 d-none d-lg-flex">
                             <div class="flex-grow-1 bg-login-image"
-                                 style="background-image: url(&quot;assets/img/dogs/image3.jpeg&quot;);"></div>
+                                 style="background-image: url(assets/img/dogs/image3.jpeg);"></div>
                         </div>
                         <div class="col-lg-6">
                             <div class="p-5">
@@ -35,7 +35,7 @@ if (isset($_SESSION['oturum']))
                                     <h4 class="text-dark mb-4">Kullanıcı Giriş Paneli</h4>
                                 </div>
                                 <form class="user" method="post" action="kontrol.php">
-                                    <div class="form-group"><input class="form-control form-control-user" type="email"
+                                    <div class="form-group"> <input class="form-control form-control-user" type="email"
                                                                    id="exampleInputEmail" aria-describedby="emailHelp"
                                                                    placeholder="E-Posta Adresi Giriniz" name="eposta" required>
                                     </div>
@@ -56,7 +56,7 @@ if (isset($_SESSION['oturum']))
                                     <hr>
                                 </form>
                                 <div class="text-center"><a class="small" href="forgot-password.html">Parolamı
-                                        Unttum?</a></div>
+                                        Unuttum?</a></div>
                                 <div class="text-center"><a class="small" href="register.html">Kayıt Ol!!!</a></div>
                                 <?php
                                 if (isset($_SESSION['hata'])) {
