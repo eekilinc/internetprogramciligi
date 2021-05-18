@@ -10,6 +10,8 @@
                             class="fas fa-tachometer-alt"></i><span>Anasayfa</span></a></li>
             <li class="nav-item"><a class="nav-link" href="ayarlar.php"><i class="fas fa-user"></i><span>Ayarlar</span></a>
             </li>
+            <li class="nav-item"><a class="nav-link" href="kategoriler.php"><i class="fas fa-stream"></i><span>Kategoriler</span></a>
+            </li>
             <li class="nav-item"><a class="nav-link" href="kullanicilar.php"><i
                             class="fas fa-table"></i><span>Kullanıcılar</span></a></li>
 

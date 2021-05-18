@@ -35,13 +35,15 @@ if (isset($_SESSION['oturum']))
                                     <h4 class="text-dark mb-4">Kullanıcı Giriş Paneli</h4>
                                 </div>
                                 <form class="user" method="post" action="kontrol.php">
-                                    <div class="form-group"> <input class="form-control form-control-user" type="email"
+                                    <div class="form-group"><input class="form-control form-control-user" type="email"
                                                                    id="exampleInputEmail" aria-describedby="emailHelp"
-                                                                   placeholder="E-Posta Adresi Giriniz" name="eposta" required>
+                                                                   placeholder="E-Posta Adresi Giriniz" name="eposta"
+                                                                   required>
                                     </div>
                                     <div class="form-group"><input class="form-control form-control-user"
                                                                    type="password" id="exampleInputPassword"
-                                                                   placeholder="Parolanızı Girin" name="parola" required></div>
+                                                                   placeholder="Parolanızı Girin" name="parola"
+                                                                   required></div>
                                     <div class="form-group">
                                         <div class="custom-control custom-checkbox small">
                                             <div class="form-check"><input class="form-check-input custom-control-input"
