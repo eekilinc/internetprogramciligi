@@ -10,6 +10,26 @@ $kayitsayisi = $sorgu->rowCount();
 <html lang="tr">
 <head>
     <?php include("templates/header.php") ?>
+    <script>
+
+        function TumunuSec(btn) {
+            var table = document.getElementsByClassName("dataTable");
+            if (btn.checked)
+                selectCheckBoxes(true, "dataTable");
+            else
+                selectCheckBoxes(false, "dataTable");
+        }
+
+        function selectCheckBoxes(bChecked, parentsId) {
+            var oParent = document.getElementById(parentsId);
+            var aElements = oParent.getElementsByTagName('input');
+            for (var i = 0; i < aElements.length; i++) {
+                if (aElements[i].type == 'checkbox') {
+                    aElements[i].checked = bChecked;
+                }
+            }
+        }
+    </script>
 </head>
 <body id="page-top">
 <div id="wrapper">
@@ -17,17 +37,19 @@ $kayitsayisi = $sorgu->rowCount();
     <div class="d-flex flex-column" id="content-wrapper">
         <?php include("templates/topnavbar.php") ?>
         <div id="content">
-            <div class="container-fluid">
-
-
-                <?php
-                if (isset($_SESSION['durum'])) {
+            <?php
+            if (isset($_SESSION['durum'])) {
+                ?>
+                <div class="alert alert-success text-center" role="alert">
+                    <?php
                     echo $_SESSION['durum'];
                     unset($_SESSION['durum']);
-                }
-
-                ?>
-
+                    ?>
+                </div>
+                <?php
+            }
+            ?>
+            <div class="container-fluid">
                 <div class="container-fluid col-11 col-lg-11 col-sm-auto">
                     <div class="card shadow">
                         <div class="card-header py-3">
@@ -35,14 +57,16 @@ $kayitsayisi = $sorgu->rowCount();
                             <a class="badge badge-info" href="kategori.php?islem=ekle">Yeni Kategori Ekle</a>
                         </div>
                         <div class="card-body">
-                            <div class="table-responsive table mt-2" id="dataTable" role="grid"
+                            <div class="table-responsive table mt-auto" id="dataTable" role="grid"
                                  aria-describedby="dataTable_info">
                                 <?php if ($kayitsayisi > 0) {
                                     ?>
-                                    <table class="table table-bordered table-striped table-hover" id="kategoriTable">
+                                    <table class="table table-bordered table-striped table-hover align-middle"
+                                           id="kategoriTable">
                                         <thead class="thead-dark">
                                         <tr>
-                                            <th><input class="form-control" type="checkbox"></th>
+                                            <th><input class="form-control" type="checkbox" style="width: 70%"
+                                                       id="secimbutun" onchange="TumunuSec(this);"></th>
                                             <th scope="col">İd</th>
                                             <th scope="col">Ad</th>
                                             <th scope="col">Açıklama</th>
@@ -53,7 +77,8 @@ $kayitsayisi = $sorgu->rowCount();
                                         <tbody>
                                         <?php foreach ($kategoriler as $satir) { ?>
                                             <tr>
-                                                <td><input class="form-control" type="checkbox"></td>
+                                                <td><input deger="<?php echo $satir["id"]; ?>" class="form-control"
+                                                           type="checkbox" style="width: 70%"></td>
                                                 <td><?php echo $satir['id'] ?></td>
                                                 <td><?php echo $satir['ad'] ?></td>
                                                 <td><?php echo $satir['aciklama'] ?></td>
@@ -72,7 +97,7 @@ $kayitsayisi = $sorgu->rowCount();
                                         </tbody>
                                         <tfoot class="thead-dark">
                                         <tr>
-                                            <th><input class="form-control" type="checkbox"></th>
+                                            <th><input class="form-control" type="checkbox" style="width: 70%"></th>
                                             <th scope="col">İd</th>
                                             <th scope="col">Ad</th>
                                             <th scope="col">Açıklama</th>

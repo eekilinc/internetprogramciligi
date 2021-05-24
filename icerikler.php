@@ -2,8 +2,8 @@
 require("templates/oturumkontrol.php");
 require("templates/vt.php");
 
-$sorgu = $vt->query("select * from kullanici order by id desc");
-$kullanicilar = $sorgu->fetchAll(PDO::FETCH_ASSOC);
+$sorgu = $vt->query("select * from icerikler order by id desc");
+$icerikler = $sorgu->fetchAll(PDO::FETCH_ASSOC);
 $kayitsayisi = $sorgu->rowCount();
 ?>
 <!DOCTYPE html>
@@ -35,41 +35,41 @@ $kayitsayisi = $sorgu->rowCount();
                 <div class="container-fluid col-11 col-lg-11 col-sm-auto">
                     <div class="card shadow">
                         <div class="card-header py-3">
-                            <h5 class="text-primary m-0 font-weight-bold">Kullanıcılar</h5>
-                            <a class="badge badge-info" href="kullanici.php?islem=ekle">Yeni Kullanıcı Ekle</a>
+                            <h5 class="text-primary m-0 font-weight-bold">İçerikler</h5>
+                            <a class="badge badge-info" href="icerik.php?islem=ekle">Yeni İçerik Ekle</a>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive table mt-2" id="dataTable" role="grid"
                                  aria-describedby="dataTable_info">
                                 <?php if ($kayitsayisi > 0) {
                                     ?>
-                                    <table class="table table-bordered table-striped table-hover" id="kullaniciTablo">
+                                    <table class="table table-bordered table-striped table-hover" id="icerikTablo">
                                         <thead class="thead-dark">
                                         <tr>
-                                            <th><input class="form-control" type="checkbox"></th>
+                                            <th><input  type="checkbox"></th>
                                             <th scope="col">İd</th>
-                                            <th scope="col">Ad</th>
-                                            <th scope="col">Soyad</th>
-                                            <th scope="col">E-Posta</th>
+                                            <th scope="col">Başlık</th>
+                                            <th scope="col">Url</th>
+                                            <th scope="col">Güncelleme Tarihi</th>
                                             <th scope="col" class="text-center">Aktif Mi</th>
                                             <th class="text-center">İşlemler</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <?php foreach ($kullanicilar as $satir) { ?>
+                                        <?php foreach ($icerikler as $satir) { ?>
                                             <tr>
-                                                <td><input class="form-control" type="checkbox"></td>
+                                                <td><input type="checkbox"></td>
                                                 <td><?php echo $satir['id'] ?></td>
-                                                <td><?php echo $satir['Ad'] ?></td>
-                                                <td><?php echo $satir['Soyad'] ?></td>
-                                                <td><?php echo $satir['Eposta'] ?></td>
+                                                <td><?php echo $satir['baslik'] ?></td>
+                                                <td><?php echo $satir['url'] ?></td>
+                                                <td><?php echo $satir['guncellemtarih'] ?></td>
                                                 <td class="text-center"><span
-                                                            class="fa-2x <?php echo $satir['Aktif'] == 0 ? 'fa fa-minus-square' : 'fa fa-check-square'; ?>"></span>
+                                                            class="fa-2x <?php echo $satir['aktif'] == 0 ? 'fa fa-minus-square' : 'fa fa-check-square'; ?>"></span>
                                                 </td>
                                                 <td class="text-center">
-                                                    <a href="kullanici.php?islem=duzenle&id=<?php echo $satir['id'] ?>">
+                                                    <a href="icerik.php?islem=duzenle&id=<?php echo $satir['id'] ?>">
                                                         <span class="fa fa-pen-square fa-2x"></span></a>
-                                                    <a href="kullanici.php?islem=sil&id=<?php echo $satir['id'] ?>">
+                                                    <a href="icerik.php?islem=sil&id=<?php echo $satir['id'] ?>">
                                                         <span class="fa fa-trash-o fa-2x"></span></a>
                                                 </td>
                                             </tr>
@@ -78,12 +78,12 @@ $kayitsayisi = $sorgu->rowCount();
                                         </tbody>
                                         <tfoot class="thead-dark">
                                         <tr>
-                                            <th><input class="form-control" type="checkbox"></th>
-                                            <th>İd</th>
-                                            <th>Ad</th>
-                                            <th>Soyad</th>
-                                            <th>E-Posta</th>
-                                            <th class="text-center">Aktif Mi</th>
+                                            <th><input  type="checkbox"></th>
+                                            <th scope="col">İd</th>
+                                            <th scope="col">Başlık</th>
+                                            <th scope="col">Url</th>
+                                            <th scope="col">Güncelleme Tarihi</th>
+                                            <th scope="col" class="text-center">Aktif Mi</th>
                                             <th class="text-center">İşlemler</th>
                                         </tr>
                                         </tfoot>
@@ -109,3 +109,4 @@ $kayitsayisi = $sorgu->rowCount();
 <?php include("templates/footerscript.php") ?>
 </body>
 </html>
+
